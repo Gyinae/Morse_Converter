@@ -63,9 +63,9 @@ message = input("Please enter your message:\n")
 #user response
 if cipher_direction == "decode":
     plain_text = decodeMorse(message)
-    print(f"Your plain text for '{message}' is {plain_text}")
+    print(f"Your plain text for '{message}' is '{plain_text}'")
 elif cipher_direction == "encode":
     morse_code = encodeToMorse(message)
-    print(f" Your morse code for '{message}' is {morse_code}")
+    print(f" Your morse code for '{message}' is '{morse_code}'")
 else:
     print("Enter a valid cipher direction and message")
