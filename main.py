@@ -1,4 +1,4 @@
-morseAlphabet = {
+Morse_Alphabets = {
     "A": ".-",
     "B": "-...",
     "C": "-.-.",
@@ -28,30 +28,30 @@ morseAlphabet = {
     " ": "/"
 }
 
-inverseMorseAlphabet = dict((v, k) for (k, v) in morseAlphabet.items())
+inverse = dict((a, b) for (b, a) in Morse_Alphabets.items())
 
 
-# parse a morse code string positionInString is the starting point for decoding
-def decodeMorse(code, positionInString=0):
-    if positionInString < len(code):
-        morseLetter = ""
-        for key, char in enumerate(code[positionInString:]):
+# parse a morse code string string_Position is the starting point for decoding
+def Decode_Morse(code, string_Position=0):
+    if string_Position < len(code):
+        Morse_Letter = ""
+        for key, char in enumerate(code[string_Position:]):
             if char == " ":
-                positionInString = key + positionInString + 1
-                letter = inverseMorseAlphabet[morseLetter]
-                return letter + decodeMorse(code, positionInString)
+                string_Position = key + string_Position + 1
+                letter = inverse[Morse_Letter]
+                return letter + Decode_Morse(code, string_Position)
 
             else:
-                morseLetter += char
+                Morse_Letter += char
     else:
         return ""
 
 
 # encode a message in morse code, spaces between words are represented by '/'
-def encodeToMorse(message):
+def To_Morse(message):
     encodedMessage = ""
     for char in message[:]:
-        encodedMessage += morseAlphabet[char.upper()] + " "
+        encodedMessage += Morse_Alphabets[char.upper()] + " "
 
     return encodedMessage
 
@@ -62,10 +62,10 @@ message = input("Please enter your message:\n")
 
 #user response
 if cipher_direction == "decode":
-    plain_text = decodeMorse(message)
+    plain_text = Decode_Morse(message)
     print(f"Your plain text for '{message}' is '{plain_text}'")
 elif cipher_direction == "encode":
-    morse_code = encodeToMorse(message)
+    morse_code = To_Morse(message)
     print(f" Your morse code for '{message}' is '{morse_code}'")
 else:
     print("Enter a valid cipher direction and message")
